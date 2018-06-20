@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var define, requireModule, require, requirejs;
+    (function () {
+        var register = {},seen = {};
+        define = function (name, deps, callback) {
+            register[name] = { deps: deps, callback: callback }
+        };
+        require = requireModule = requirejs = function (name) {
+            if (seen[name]) { return seen[name]; }
+            seen[name] = {};
+
+            if(!register[name]){
+                throw new Error("Could not find module " + name);
+            }
+
+            var mod = register[name],
+                callback = mod.callback,
+                deps = mod.deps,
+                reified = [];
+
+            for(var i = 0; i < deps.length; i++){
+                reified.push(requireModule(resolve(deps[i])));
+            }
+
+            var value = callback.call(this,reified);
+            return seen[name] = value;
+            function resolve(child) {
+
+            }
+        }
+    })();
+    function resolve(child) {
+        if (child.charAt(0) !== '.') { return child; }
+        var parts = child.split("/");
+        var parentBase = name.split("/").slice(0, -1);
+
+        for (var i=0, l=parts.length; i<l; i++) {
+            var part = parts[i];
+
+            if (part === '..') { parentBase.pop(); }
+            else if (part === '.') { continue; }
+            else { parentBase.push(part); }
+        }
+
+        return parentBase.join("/");
+    }
+    console.log(resolve('./app/index.js'));
+</script>
+</html>

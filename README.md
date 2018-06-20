@@ -1,7 +1,11 @@
 # fronted_notes
 ### 模块划分
 
-##### js/web安全指南.md: 针对安全方面，自己的知识总结。
+#### js
+
+js/web安全指南.md-----针对安全方面，自己的知识总结。
+js/require.js-----自己实现的require.js的源码。
+js/Promise.js-----自己实现的Promise的源码。
 
 ### 最近一年的技术目标
 
