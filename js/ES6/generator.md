@@ -127,4 +127,68 @@ function f(a, cb) {
 var thunkF = thunk(f);
 thunkF(1)(console.log.bind(console));
 ```
+## 基于thunk函数的自动流程管理
+
+thunk函数从本质上是把多参数的函数，使用了单参数的方式进行表达。它真正的威力在于generator函数的异步执行。
+
+```
+function run(fn){
+    var g = fn();
+    function next(err, data){
+        var result = g.next();
+        if(reslut.done) return ;
+        result.value(next);
+    }
+    next();
+}
+```
+thunk函数的本质，也是把一个函数分成两个函数来执行，第一个是用来参数传递，返回一个新的函数，这个新的函数用来接收一个回调函数，所以参数的形式不一定是function(err, data){} 这样的方式。
+
+在使用的时候，我们聚焦的点，是这个next函数的构造。
+
+## 基于Promise的自动流程管理
+
+能够归还yield异步的执行权的方式一个是回调函数，另一个是Promise
+
+```
+var fs = requilre('fs');
+function readFile(filename){
+    return new Promise(function(resolve, reject){
+        fs.readFile(filename,function(err, data){
+            if(err){
+                reject(err);
+            }
+            resolve(data)
+        });
+    })
+}
+function* gen(){
+    var f1 = readFile('./f1');
+    var f2 = readFIle("./f2");
+}
+var f = gen();
+f.next().value.then(data => {
+    f.next(data).then(data => {
+        f.next(data);
+    })
+})
+
+```
+上面这个是一个基本的Promise的执行generator函数，可以得到的结果是，这个执行的一直是一个Promise的then函数回调。
+
+基于以上的示例，我们写的Promise方式的执行generator函数为：
+```
+function run(gen){
+    var g = gen();
+    function next(data){
+        result = g.next(data);
+        if(result.done) return result.value;
+        result.value.then(function(data){
+            next(data);
+        })
+    }
+    next();
+}
+```
+
 

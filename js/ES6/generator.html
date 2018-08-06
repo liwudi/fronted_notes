@@ -61,5 +61,63 @@
     var thunkF = thunk(f);
     thunkF(1)(console.log.bind(console));
 
+    // @todo: 基于thunk的generator执行函数
+    function run(fn){
+        var g = fn();
+        function next(err, data){
+            var result = g.next();
+            if(reslut.done) return ;
+            result.value(next);
+        }
+        next();
+    }
+    // @todo: 基于Promise的generator执行函数
+    var fs = require('fs');
+    function readFile(fileName) {
+        return new Promise(function (resolve, reject) {
+            fs.readFile(fileName, function (err, data) {
+                resolve(data);
+            })
+        })
+    }
+
+    function gen2() {
+        var f1 = readFile('./f1');
+        var f2 = readFile('./f2');
+    }
+    var g2 = gen2();
+    g2.next().value.then(function (data) {
+        g2.next(data).value.then(function (data) {
+            g2.next(data);
+        })
+    });
+    function run(gen) {
+        var g = gen();
+        function next(data) {
+            var result = g.next(data);
+            if (result.done) return result.value;
+            result.value.then(next)
+        }
+        next();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </html>
