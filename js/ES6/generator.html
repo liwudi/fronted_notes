@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator函数的使用</title>
+</head>
+<body>
+
+</body>
+<script>
+    // @todo: generator向外部暴露数据
+    function * gen() {
+        yield 1 + 2;
+        yield 2 + 3;
+        return 3;
+    }
+    var g = gen();
+    var g1 = g.next();// {value: 3, done: false}
+    var g2 = g.next();// {value: 5, done: false}
+    var g3 = g.next();// {value: 3, done: true}
+    console.log(g1, g2, g3);
+
+    // @todo: generator函数向内部输入数据
+    function * gen() {
+        var a = yield 1 + 2;
+        var b = yield 2 + 3 + a;
+        return 3;
+    }
+    var g = gen();
+    var r1 = g.next();// { value: 3, done: false }
+    var r2 = g.next(456);// { value: 461, done: false}
+    console.log(r1, r2);// 这里的456就是外部输入的数据
+
+    // @todo:顺序执行
+    function* gen1() {
+        yield 1;
+        yield 2;
+        yield 3;
+        return 4;
+    }
+    var g = gen1();
+    var value = g.next();
+    while (!value.done) {
+        console.log(value.value);
+        value = g.next();
+    }
+    // @todo:thunk函数
+    var thunk = function (fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return function (cb) {
+                args.push(cb);
+                fn.apply(this, args)
+            }
+        }
+    }
+
+    function f(a, cb) {
+        cb(a);
+    }
+    var thunkF = thunk(f);
+    thunkF(1)(console.log.bind(console));
+
+</script>
+</html>

@@ -89,10 +89,13 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
     handle(this, new Handler(onFulfilled, onRejected, res));
     return res;
 };
+Promise.prototype['catch'] = function (onRejected) {
+    return this.then(null, onRejected);
+};
 
 function handle(self, deferred) {
 
-    if(self._state ===0){
+    if(self._state === 0){
         if(self._deferredState == 0){
             self._deferredState = 1;
             self._deferreds = deferred;
@@ -112,6 +115,7 @@ function handle(self, deferred) {
 
 function handleResolved(self, deferred) {
     var cb = self._state == 1 ? deferred.onFulfilled : deferred.onRejected;//这个cb其实就是then函数的回调
+    console.log('这个cb是？', cb);
     var ret = tryCallOne(cb, self._value);//ret其实就是then中回调的返回值。
     if(ret == IS_ERROE){
         reject(deferred.promise, LAST_ERROR);
@@ -127,3 +131,7 @@ function Handler(onFulfilled, onRejected, promise) {
 }
 
 function noop() {}
+
+
+
+

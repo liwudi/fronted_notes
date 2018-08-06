@@ -11,13 +11,10 @@
 <script>
     new Promise(function (resolve, reject) {
         setTimeout(function () {
-            resolve(1234);
+            reject('这是一个错误信息');
         },1000)
-    }).then(function (res) {
-        console.log(res);
-        return 4444
-    }).then(function (data) {
-        console.log(data)
+    }).catch(function (err) {
+        console.log('err捕获',err);
     })
 </script>
 </html>
