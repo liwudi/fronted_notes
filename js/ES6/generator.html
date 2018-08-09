@@ -72,35 +72,73 @@
         next();
     }
     // @todo: 基于Promise的generator执行函数
-    var fs = require('fs');
-    function readFile(fileName) {
+//    var fs = require('fs');
+//    function readFile(fileName) {
+//        return new Promise(function (resolve, reject) {
+//            fs.readFile(fileName, function (err, data) {
+//                resolve(data);
+//            })
+//        })
+//    }
+//
+//    function gen2() {
+//        var f1 = readFile('./f1');
+//        var f2 = readFile('./f2');
+//    }
+//    var g2 = gen2();
+//    g2.next().value.then(function (data) {
+//        g2.next(data).value.then(function (data) {
+//            g2.next(data);
+//        })
+//    });
+//    function run(gen) {
+//        var g = gen();
+//        function next(data) {
+//            var result = g.next(data);
+//            if (result.done) return result.value;
+//            result.value.then(next)
+//        }
+//        next();
+//    }
+
+    // @todo: co模块的源码学习
+
+    console.log('co模块的学习————————————')
+    function add() {
+        console.log('执行add')
+        return 2;
+    }
+    function co(gen) {
+        var ctx = this;
         return new Promise(function (resolve, reject) {
-            fs.readFile(fileName, function (err, data) {
-                resolve(data);
-            })
+            if (typeof gen === 'function'){
+                gen = gen.call(ctx);
+            }
+            if (!gen || typeof gen.next !== 'function') {
+                return resolve(gen);// 把这个函数的执行结果resolve出去
+            }
+            onFullfilled();
+            function onFullfilled(res) {
+                var ret;
+                try {
+                    ret = gen.next(res);
+                } catch (e) {
+                    return reject(e);
+                }
+                next(ret);
+            }
+            function onRejected(err) {
+                console.log(err);
+            }
+            function next(ret) {
+                if (ret.done) {
+                    return resolve(ret.value);
+                }
+                var value = ret.value;
+                value.then(onFullfilled, onRejected);
+            }
         })
     }
-
-    function gen2() {
-        var f1 = readFile('./f1');
-        var f2 = readFile('./f2');
-    }
-    var g2 = gen2();
-    g2.next().value.then(function (data) {
-        g2.next(data).value.then(function (data) {
-            g2.next(data);
-        })
-    });
-    function run(gen) {
-        var g = gen();
-        function next(data) {
-            var result = g.next(data);
-            if (result.done) return result.value;
-            result.value.then(next)
-        }
-        next();
-    }
-
 
 
 
