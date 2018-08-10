@@ -190,12 +190,101 @@ function run(gen){
     next();
 }
 ```
-## co模块如何使用generator函数
+## co模块如何执行generator函数
+
+co模块，是最好进行generator函数执行的一种方式，它本身返回一个Promise对象。
+
+```
+var co = require('co');
+function * gen(){
+    var f1 = readFile('/file1');
+    // other code...
+}
+co(gen);//这样的方式进行执行
+
+// 由于co模块的返回值是一个Promise，可以返回一个执行结果的值。
+co(gen).then((res) => console.log(res))
+```
 
 ## 处理并发的异步操作方式
 
+co模块，在处理并发的异步操作的时候，使用数组或者对象的方式。
+```
+// array方式
+co(function * (){
+    var res = yield [
+        Promise.resolve(1),
+        Promise.resolve(2),
+    ];
+    console.log(res);
+}).catch(onerror);
+
+// object方式
+co(function * (){
+    var res = yield {
+        1: Promise.resolve(1),
+        2: Promise.resolve(2),
+    };
+    console.log(res);
+}).catch(onerror);
+```
 
 ## 关于stream流的处理
+
+原理是通过Promise.race的方式，得到执行最快的那一个异步函数，然后resolve。
+
+Stream模式释放了三个事件：data事件、end事件、error事件。
+
+```
+const co = require('co');
+const fs = require('fs');
+
+const stream = fs.createReadStream('./aa.txt');
+let valjeanCount = 0;
+
+co(function * (){
+    while(true) {
+        const res = yield Promise.race([
+            new Promise(resolve => stream.once('data', resolve)),
+            new Promise(resolve => stream.once('end', resolve)),
+            new Promise(resolve => stream.once('err', resolve)),
+        ]);
+        
+        if(!res) {
+            break;
+        }
+        
+        stream.removeAllListeners('data');
+        stream.removeAllListeners('end');
+        stream.removeAllListeners('error');
+    }
+})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
