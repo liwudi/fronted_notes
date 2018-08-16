@@ -11,8 +11,8 @@ export function dynamic(loadComponent, placeHolder = null) {
                 component: null,
             }
         }
-        componentDidMount() {
-            const {default: component} = loadComponent();
+        async componentDidMount() {
+            const {default: component} = await loadComponent();
             this.setState({
                 component: component,
             })
@@ -46,8 +46,8 @@ export function dynamic(options) {
                 component: null,
             }
         }
-        componentDidMount() {
-            const {default: component} = options.component();
+        async componentDidMount() {
+            const {default: component} = await options.component();
             this.setState({
                 component: component,
             })
@@ -55,7 +55,8 @@ export function dynamic(options) {
         render() {
             const Com = this.state.component;
             const modelProps = options.models();
-            return Com ? <Com {...this.props, ...modelProps}></Com> : placeHolder
+
+            return Com ? <Com {...Object.assign(this.props, modelProps)}></Com> : placeHolder
         }
     }
     return AsyncComponent;
