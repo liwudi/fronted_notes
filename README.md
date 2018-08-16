@@ -11,6 +11,10 @@ js/Promise.js-----自己实现的Promise的源码。
 
 js/ES6-----针对ES6中的模块，进行系统的学习
 
+    generator: 关于generator函数的学习和体会
+
+    decorator: 关于修饰器decorator的学习和体会
+
 ### 最近一年的技术目标
 
 ##### 1、完成一个UI框架的研究和学习
