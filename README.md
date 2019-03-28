@@ -14,6 +14,10 @@ js/ES6-----针对ES6中的模块，进行系统的学习
     generator: 关于generator函数的学习和体会
 
     decorator: 关于修饰器decorator的学习和体会
+    
+    module: 关于es6的module模块的学习
+    
+    reflect: 关于es6的reflect是什么的学习
 
 ### 最近一年的技术目标
 
@@ -30,3 +34,13 @@ js/ES6-----针对ES6中的模块，进行系统的学习
 ##### 6、完成Vue源码的解读
 
 ##### 7、完成Redux、Vuex的学习和对比
+
+### Open source project
+
+#### 1，完成react-dva项目的开发和构建
+
+#### 2，完成可视化方向（eCharts，highCharts），并且完成分别针对vue，react的动态代码的动态展示的实现。
+
+#### 3，完成npm项目的发布，包括pub，sub的事件绑定和动态刷新。
+
+#### 4，关于路径参数的获取，关于公用功能的增加。

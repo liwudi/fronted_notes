@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+    function Subject() {
+        this.state = {
+
+        };
+        this.observerList = [];
+    }
+    Subject.prototype.add = function () {
+
+    };
+    Subject.prototype.getState = function () {
+        return this.state;
+    };
+    Subject.prototype.notifyAllObservers = function () {
+        for (let i = 0; i < this.observerList.length; i++) {
+            let observer = this.observerList[i];
+            observer.update(this.state);
+        }
+    }
+
+    
+</script>
+</html>
