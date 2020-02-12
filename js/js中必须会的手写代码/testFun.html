@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // var pipe = (function () {
+        //     return function (value) {
+        //         var funcStack = [];
+        //         var oproxy = new Proxy({} , {
+        //             get : function (pipeObject, fnName) {
+        //                 if (fnName === 'get') {
+        //                     return funcStack.reduce(function (val, fn) {
+        //                         return fn(val);
+        //                     },value);
+        //                 }
+        //                 funcStack.push(window[fnName]);
+        //                 return oproxy;
+        //             }
+        //         });
+        //
+        //         return oproxy;
+        //     }
+        // }());
+        //
+        // var double = n => n * 2;
+        // var pow    = n => n * n;
+        // var reverseInt = n => n.toString().split("").reverse().join("") | 0;
+        //
+        // let result = pipe(3).double.pow.reverseInt.get; // 63
+        // console.log(result);
+
+
+        function compose(...funcs) {
+            if (funcs.length === 0) {
+                return arg => arg
+            }
+
+            if (funcs.length === 1) {
+                return funcs[0]
+            }
+
+            return funcs.reduce((a, b) => (...args) => b(a(...args)))
+        }
+        function add1 (x) {
+            return x + 1;
+        }
+
+        function square2 (x) {
+            return x * x;
+        }
+
+        let result = compose(add1, square2)(1); // (1+1) * (1+1) = 4, (1 * 1) + 1 = 2;
+        console.log(result);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
