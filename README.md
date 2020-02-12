@@ -1,9 +1,9 @@
 # fronted_notes
-### 模块划分
 
-#### js
+## design_patterns (设计模式)
 
-js/web安全指南.md-----针对安全方面，自己的知识总结。
+## js
+
 
 js/require.js-----自己实现的require.js的源码。
 
@@ -11,36 +11,36 @@ js/Promise.js-----自己实现的Promise的源码。
 
 js/ES6-----针对ES6中的模块，进行系统的学习
 
-    generator: 关于generator函数的学习和体会
+## node
 
-    decorator: 关于修饰器decorator的学习和体会
-    
-    module: 关于es6的module模块的学习
-    
-    reflect: 关于es6的reflect是什么的学习
+* [egg]
 
-### 最近一年的技术目标
+* [interview]
 
-##### 1、完成一个UI框架的研究和学习
+## react
 
-##### 2、完成requirejs的实现
+* [react源码]
 
-##### 3、完成zepTo源码的研究
+* [redux源码]
 
-##### 4、完成前端基础HTML、CSS、JavaScript的重新学习
+* [react路由]
 
-##### 5、完成React源码的研究
+## vue
 
-##### 6、完成Vue源码的解读
+* [Vue源码]
 
-##### 7、完成Redux、Vuex的学习和对比
+* [Vuex源码]
 
-### Open source project
+* [Vue-router源码]
 
-#### 1，完成react-dva项目的开发和构建
+## 专题部分
 
-#### 2，完成可视化方向（eCharts，highCharts），并且完成分别针对vue，react的动态代码的动态展示的实现。
+* [web安全指南](https://github.com/liwudi/fronted_notes/blob/master/%E4%B8%93%E9%A2%98/web%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97.md)
 
-#### 3，完成npm项目的发布，包括pub，sub的事件绑定和动态刷新。
+* [app和h5之间的通信](https://github.com/liwudi/fronted_notes/blob/master/%E4%B8%93%E9%A2%98/app%E5%92%8Ch5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1.md)
 
-#### 4，关于路径参数的获取，关于公用功能的增加。
+* [数据结构和算法](https://github.com/liwudi/fronted_notes/blob/master/%E4%B8%93%E9%A2%98/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95.md)
+
+* [设计模式](https://github.com/liwudi/fronted_notes/blob/master/%E4%B8%93%E9%A2%98/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+
+
