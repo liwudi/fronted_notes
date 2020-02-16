@@ -85,7 +85,32 @@
     // });
     // console.log(5);
 
+    // Array(range).fill(0)
+    //     .map((_, i) => String.fromCharCode(i))
+    //     .map(encodeURI);
 
+    // Array(255).fill(0).map((_,i) => {
+    //
+    //     let val = String.fromCharCode(i);
+    //
+    //     console.log(i,val);
+    //
+    //     return val;
+    // }).map((item) => {
+    //     let val = encodeURI(item);
+    //     console.log(item,":" ,val)
+    //     return val;
+    // });
+
+    function isSushu(num) {
+        let flag = true;
+        for (let i = 2; i < num; i++) {
+            if (num % i) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
 
 </script>
 </body>

@@ -42,7 +42,36 @@
 //     console.log(1);
 //     process.nextTick(() => test());
 // }
-function test() {
-    console.log(1);
-    setTimeout(() => test(), 0);
-}
+// function test() {
+//     console.log(1);
+//     setTimeout(() => test(), 0);
+// }
+
+// let querystring = require('querystring');
+// let obj = {a: 1, b: 3, c: [1,2,3], d: {a:1}};
+// console.log(querystring.stringify(obj));
+
+
+
+// let fs = require('fs');
+// let path = require('path');
+// let list = fs.readdirSync('../');
+//
+// for (let item of list) {
+//     console.log(item);
+//     let filepath = path.join('../', item);
+//     let fd = fs.openSync(filepath, 'r');
+//     let flag = fs.fstatSync(fd).isDirectory();
+//     console.log(flag);
+// }
+
+// const glob = require("glob");
+//
+// glob("./", (err, files) => {
+//     if (err) {
+//         throw new Error(err);
+//     }
+//     files.map((filename) => {
+//         console.log('Here you are:', filename);
+//     });
+// });

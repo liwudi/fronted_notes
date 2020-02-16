@@ -7,25 +7,98 @@
 <body>
 </body>
 <script>
-    function Subject() {
-        this.state = {
+    // function Subject() {
+    //     this.state = {
+    //
+    //     };
+    //     this.observerList = [];
+    // }
+    // Subject.prototype.add = function () {
+    //
+    // };
+    // Subject.prototype.getState = function () {
+    //     return this.state;
+    // };
+    // Subject.prototype.notifyAllObservers = function () {
+    //     for (let i = 0; i < this.observerList.length; i++) {
+    //         let observer = this.observerList[i];
+    //         observer.update(this.state);
+    //     }
+    // }
 
-        };
-        this.observerList = [];
+    // class LocalStorageUtils {
+    //     setData(key, val) {
+    //         localStorage.setItem(key, val)
+    //     }
+    //     getdata(key) {
+    //         return localStorage.getItem(key)
+    //     }
+    // }
+    //
+    // class SessionStorageUtils {
+    //     setData(key, val) {
+    //         sessionStorage.setItem(key, val)
+    //     }
+    //     getdata(key) {
+    //         return sessionStorage.getItem(key)
+    //     }
+    // }
+    //
+    // function storage(tag) {
+    //     if (tag) {
+    //         return new SessionStorageUtils();
+    //     } else {
+    //         return new LocalStorageUtils();
+    //     }
+    // }
+    //
+    // let stor = storage(1);
+    // stor.setData('name', 'mapbar_front');
+    //
+    // console.log(localStorage.getItem('name'));
+    // console.log(sessionStorage.getItem('name'));
+
+
+    class StrategyVip {
+        constructor(){
+            this.discount = 0.5;
+        }
+        getPrice(price){
+            return this.discount * price;
+        }
     }
-    Subject.prototype.add = function () {
-
-    };
-    Subject.prototype.getState = function () {
-        return this.state;
-    };
-    Subject.prototype.notifyAllObservers = function () {
-        for (let i = 0; i < this.observerList.length; i++) {
-            let observer = this.observerList[i];
-            observer.update(this.state);
+    class StrategyNormal {
+        constructor(){
+            this.discount = 1;
+        }
+        getPrice(price){
+            return this.discount * price;
         }
     }
 
-    
+    function Context() {
+        this.strategy = null;
+        this.price = null;
+    }
+    Context.prototype.set = function (strategy, price) {
+        this.strategy = strategy;
+        this.price = price;
+    }
+    Context.prototype.getResult = function () {
+        if (this.strategy) {
+            console.log(this.strategy.getPrice())
+        }
+    }
+    let context = new Context();
+    let userVip = new StrategyVip();
+    context.set(userVip, 2000);
+    context.getResult();
+
+    let userNormal = new StrategyNormal();
+    context.set(userNormal, 2000);
+    context.getResult();
+
+
+
 </script>
 </html>
