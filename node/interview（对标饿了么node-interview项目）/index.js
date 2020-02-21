@@ -75,3 +75,6 @@
 //         console.log('Here you are:', filename);
 //     });
 // });
+
+// let data = process.env;
+// console.log(data);
