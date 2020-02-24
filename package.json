@@ -1,0 +1,35 @@
+{
+  "name": "fronted_notes",
+  "version": "1.0.0",
+  "description": "一个前端笔记系列",
+  "main": "none",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liwudi/fronted_notes.git"
+  },
+  "keywords": [
+    "笔记"
+  ],
+  "author": "mapbar_front",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liwudi/fronted_notes/issues"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "homepage": "https://github.com/liwudi/fronted_notes#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.1.0",
+    "ghooks": "^2.0.4",
+    "git-cz": "^4.3.1"
+  }
+}
