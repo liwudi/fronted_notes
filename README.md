@@ -1,7 +1,5 @@
 # fronted_notes
 
-## design_patterns (设计模式)
-
 ## js
 
 * [require.js](https://github.com/liwudi/fronted_notes/blob/master/js/require/require.js)
@@ -42,4 +40,20 @@
 
 * [设计模式](https://github.com/liwudi/fronted_notes/blob/master/%E4%B8%93%E9%A2%98/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
+## 可视化
 
+* [canvas](https://github.com/liwudi/fronted_notes/blob/master/%E5%8F%AF%E8%A7%86%E5%8C%96/%E5%8F%AF%E8%A7%86%E5%8C%96-canvas.md)
+
+* [d3.js](https://github.com/liwudi/fronted_notes/blob/master/%E5%8F%AF%E8%A7%86%E5%8C%96/%E5%8F%AF%E8%A7%86%E5%8C%96-d3.md)
+
+* [echarts](https://github.com/liwudi/fronted_notes/blob/master/%E5%8F%AF%E8%A7%86%E5%8C%96/%E5%8F%AF%E8%A7%86%E5%8C%96-echarts.md)
+
+* [svg](https://github.com/liwudi/fronted_notes/blob/master/%E5%8F%AF%E8%A7%86%E5%8C%96/%E5%8F%AF%E8%A7%86%E5%8C%96-svg.md)
+
+* [three.js](https://github.com/liwudi/fronted_notes/blob/master/%E5%8F%AF%E8%A7%86%E5%8C%96/%E5%8F%AF%E8%A7%86%E5%8C%96-three.md)
+
+* [webGL](https://github.com/liwudi/fronted_notes/blob/master/%E5%8F%AF%E8%A7%86%E5%8C%96/%E5%8F%AF%E8%A7%86%E5%8C%96-webgl.md)
+
+## 设计模式
+
+## 跨平台

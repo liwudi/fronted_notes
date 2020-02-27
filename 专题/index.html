@@ -2,9 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>webGL</title>
 </head>
 <body>
+    <canvas id="glCanvas" width="640" height="480">
+        Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+    </canvas>
 
+    <script>
+
+        window.onload = function () {
+            start();
+        }
+        function initWebGl(canvas) {
+            let gl = null;
+            try {
+                console.log(canvas.getContext("webgl"));
+                gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+            } catch (e) {
+                throw '创建失败。';
+            }
+
+            if (!gl) {
+                alert('WebGL初始化失败，可能是因为您的浏览器不支持。');
+                gl = null
+            }
+            return gl;
+        }
+
+
+        function start() {
+            let canvas = document.getElementById('glCanvas');
+            let gl = initWebGl(canvas);
+            if (!gl) return;
+
+
+            // 第一步，先使用黑色，进行填充canvas
+            gl.clearColor(0,0,0,1);
+
+            // 第二步，使用之前的颜色，清除缓冲区
+            gl.clear(gl.COLOR_BUFFER_BIT)
+        }
+
+    </script>
 </body>
 </html>
