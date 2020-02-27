@@ -56,4 +56,14 @@
 
 ## 设计模式
 
+* [设计模式导航](https://github.com/liwudi/fronted_notes/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/README.md)
+
 ## 跨平台
+
+* [electron](https://github.com/liwudi/fronted_notes/blob/master/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E8%B7%A8%E5%B9%B3%E5%8F%B0-electron.md)
+
+* [flutter](https://github.com/liwudi/fronted_notes/blob/master/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E8%B7%A8%E5%B9%B3%E5%8F%B0-flutter.md)
+
+* [ReactNative](https://github.com/liwudi/fronted_notes/blob/master/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E8%B7%A8%E5%B9%B3%E5%8F%B0-ReactNative.md)
+
+* [Weex](https://github.com/liwudi/fronted_notes/blob/master/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E8%B7%A8%E5%B9%B3%E5%8F%B0-Weex.md)
