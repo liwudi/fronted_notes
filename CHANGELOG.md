@@ -1,4 +1,4 @@
-# 1.0.0 (2020-02-27)
+# [1.1.0](https://github.com/liwudi/fronted_notes/compare/2742c0933366de4a544ee9b44f7f82495fb0b652...v1.1.0) (2020-02-27)
 
 
 ### Features
