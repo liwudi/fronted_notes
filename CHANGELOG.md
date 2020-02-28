@@ -1,3 +1,12 @@
+# [3.0.0](https://github.com/liwudi/fronted_notes/compare/v2.0.0...v3.0.0) (2020-02-28)
+
+
+### Features
+
+* **跨平台:** electron ([8bea6d2](https://github.com/liwudi/fronted_notes/commit/8bea6d24a1f7ab2fd32f4255a330637796da0e03))
+
+
+
 # [2.0.0](https://github.com/liwudi/fronted_notes/compare/v1.1.0...v2.0.0) (2020-02-27)
 
 
