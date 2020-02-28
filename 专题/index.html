@@ -44,6 +44,91 @@
             gl.clear(gl.COLOR_BUFFER_BIT)
 
             gl.viewport(0, 0, canvas.width, canvas.height)
+
+
+            // 顶点着色器程序
+            var VSHADER_SOURCE =
+                'void main() {\n' +
+                '  gl_Position = vec4(0.0, 0.0, 0.0, 1.0);\n' + // 设置顶点位置
+                '  gl_PointSize = 10.0;\n' +                    // 设置点的大小
+                '}\n';
+
+            // 片元着色器程序
+            var FSHADER_SOURCE =
+                'void main() {\n' +
+                '  gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n' + // 设置点的颜色，此处为白色
+                '}\n';
+
+            // let vertexShader = createShader(gl, gl.VERTEX_SHADER);
+            //
+            // let fragmentShader = createShader(gl, gl.FRAGMENT_SHADER);
+            function createShader (gl, type, sourceCode) {
+                // 编译着色器类型：顶点着色器及片元着色器。
+                var shader = gl.createShader( type );
+                gl.shaderSource( shader, sourceCode );
+                gl.compileShader( shader );
+
+                if ( !gl.getShaderParameter(shader, gl.COMPILE_STATUS) ) {
+                    var info = gl.getShaderInfoLog( shader );
+                    console.log( "无法编译 WebGL 程序。 \n\n" + info);
+                    gl.deleteShader(shader);
+                    return null;
+                }
+
+                return shader;
+            }
+
+            function createProgram(gl, vshader, fshader) {
+                // 创建着色器对象
+                var vertexShader = createShader(gl, gl.VERTEX_SHADER, vshader);
+                var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fshader);
+                if (!vertexShader || !fragmentShader) {
+                    return null;
+                }
+
+                // 创建编程对象
+                var program = gl.createProgram();
+                if (!program) {
+                    return null;
+                }
+
+                // 赋值已创建的着色器对象
+                gl.attachShader(program, vertexShader);
+                gl.attachShader(program, fragmentShader);
+
+                // 连接编程对象
+                gl.linkProgram(program);
+
+                // 检查链接结果
+                var linked = gl.getProgramParameter(program, gl.LINK_STATUS);
+                if (!linked) {
+                    var error = gl.getProgramInfoLog(program);
+                    console.log('链接程序失败：' + error);
+                    gl.deleteProgram(program);
+                    gl.deleteShader(fragmentShader);
+                    gl.deleteShader(vertexShader);
+                    return null;
+                }
+                return program;
+            }
+
+
+
+            initShaders (gl, VSHADER_SOURCE, FSHADER_SOURCE)
+            function initShaders(gl, vshader, fshader) {
+                var program = createProgram(gl, vshader, fshader);
+                if (!program) {
+                    console.log('创建程序失败。');
+                    return false;
+                }
+
+                gl.useProgram(program);
+                gl.program = program;
+
+                return true;
+            }
+
+            gl.drawArrays(gl.POINTS, 0, 1);
         }
 
     </script>
