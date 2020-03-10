@@ -253,7 +253,7 @@ npm install electron-builder --save-dev
 
 需要一个icon.icns，或者icon.png 充当 macOs 应用的图标。
 
-在package.json 中添加
+在package.json 中添加。
 
 ```text
 "build": {
@@ -276,4 +276,6 @@ npm install electron-builder --save-dev
 ```text
 npm run dist
 ```
+
+示例demo：https://github.com/liwudi/resume-electron
 

@@ -1,80 +1,40 @@
 /**
- * Created by mapbar_front on 2020-02-10.
+ * Created by mapbar_front on 2020-03-01.
  */
-// const EventEmitter = require('events');
-//
-// let emitter = new EventEmitter();
-//
-// emitter.on('myEvent', () => {
-//     console.log('hi 1');
-// });
-//
-// emitter.on('myEvent', () => {
-//     console.log('hi 2');
-// });
-//
-// emitter.emit('myEvent');
+process.stdin.on('readable', function() {
+    let chunk;
+    while ((chunk=process.stdin.read()) !== null) {
+        let a = chunk.toString();
+        let lines = a.split(' ');
+        var n = parseInt(lines[0]);
+        var k = parseInt(lines[1]);
+        getStr(n, k);
+    }
+})
+function getStr(n, k) {
+    let arr = getAllString(n);
+    console.log(arr[k]);
+    return arr[k];
+}
 
-// const EventEmitter = require('events');
-//
-// let emitter = new EventEmitter();
-//
-// emitter.on('myEvent', () => {
-//     console.log('hi');
-//     emitter.emit('myEvent');
-// });
-//
-// emitter.emit('myEvent');
-
-
-// const EventEmitter = require('events');
-//
-// let emitter = new EventEmitter();
-//
-// emitter.on('myEvent', function sth () {
-//     emitter.on('myEvent', sth);
-//     console.log('hi');
-// });
-//
-// emitter.emit('myEvent');
-
-// function test() {
-//     console.log(1);
-//     process.nextTick(() => test());
-// }
-// function test() {
-//     console.log(1);
-//     setTimeout(() => test(), 0);
-// }
-
-// let querystring = require('querystring');
-// let obj = {a: 1, b: 3, c: [1,2,3], d: {a:1}};
-// console.log(querystring.stringify(obj));
-
-
-
-// let fs = require('fs');
-// let path = require('path');
-// let list = fs.readdirSync('../');
-//
-// for (let item of list) {
-//     console.log(item);
-//     let filepath = path.join('../', item);
-//     let fd = fs.openSync(filepath, 'r');
-//     let flag = fs.fstatSync(fd).isDirectory();
-//     console.log(flag);
-// }
-
-// const glob = require("glob");
-//
-// glob("./", (err, files) => {
-//     if (err) {
-//         throw new Error(err);
-//     }
-//     files.map((filename) => {
-//         console.log('Here you are:', filename);
-//     });
-// });
-
-// let data = process.env;
-// console.log(data);
+function getAllString(n){
+    let initArr = [];
+    for(let i = 1; i < n + 1;i++) {
+        initArr.push(i);
+    }
+    let returnArr = [];
+    // 进行遍历交换
+    let len = initArr.length
+    for (let i = 0; i < len;i++) {
+        for (let j = 0; j < len;j++) {
+            let arr = JSON.parse(JSON.stringify(initArr));
+            if (i !== j) {
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                returnArr.push(arr.join(''));
+            }
+        }
+    }
+    return returnArr.sort();
+}
