@@ -1,1 +1,1 @@
-# react-native link VS
+# react-native link VS npx react-native link
